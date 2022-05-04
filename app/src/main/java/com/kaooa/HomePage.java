@@ -12,10 +12,13 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_home);
-
     }
 
-    public void openSettings(View view){
+    public void openSettings(View view) {
         Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+    }
+
+    public void startGame(View view) {
+        Toast.makeText(this, "Game Starts", Toast.LENGTH_SHORT).show();
     }
 }
