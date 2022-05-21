@@ -13,7 +13,7 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.page_home);
+        setContentView(R.layout.home_page);
 
         TextView gameStartText = findViewById(R.id.gameStart);
         gameStartText.setOnClickListener(view -> startGame());
