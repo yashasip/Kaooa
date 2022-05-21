@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:padding="@dimen/app_padding"
+    tools:context=".GamePage">
+
+    <com.kaooa.objects.PointView
+        android:id="@+id/point_1"
+        android:layout_width="@dimen/point_space_size"
+        android:layout_height="@dimen/point_space_size"
+        android:layout_marginStart="4dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:point_color="@color/theme_white"
+        app:point_drawable="@drawable/ic_white_circle_space" />
+
+    <com.kaooa.objects.PointView
+        android:id="@+id/point_2"
+        android:layout_width="@dimen/point_space_size"
+        android:layout_height="@dimen/point_space_size"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/point_1"
+        app:layout_constraintHorizontal_bias="0.185"
+        app:layout_constraintVertical_bias="0.47"
+        app:layout_constraintTop_toTopOf="parent"
+        app:point_color="@color/theme_white"
+        app:point_drawable="@drawable/ic_white_circle_space" />
+
+    <com.kaooa.objects.PointView
+        android:id="@+id/point_3"
+        android:layout_width="@dimen/point_space_size"
+        android:layout_height="@dimen/point_space_size"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/point_1"
+        app:layout_constraintHorizontal_bias="0.32"
+        app:layout_constraintVertical_bias="0.405"
+        app:layout_constraintTop_toTopOf="parent"
+        app:point_color="@color/theme_white"
+        app:point_drawable="@drawable/ic_white_circle_space" />
+
+    <com.kaooa.objects.PointView
+        android:id="@+id/point_4"
+        android:layout_width="@dimen/point_space_size"
+        android:layout_height="@dimen/point_space_size"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/point_1"
+        app:layout_constraintHorizontal_bias="0.59"
+        app:layout_constraintVertical_bias="0.45"
+        app:layout_constraintTop_toTopOf="parent"
+        app:point_color="@color/theme_white"
+        app:point_drawable="@drawable/ic_white_circle_space" />
+
+    <com.kaooa.objects.PointView
+        android:id="@+id/point_5"
+        android:layout_width="@dimen/point_space_size"
+        android:layout_height="@dimen/point_space_size"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/point_1"
+        app:layout_constraintHorizontal_bias="0.99"
+        app:layout_constraintVertical_bias="0.44"
+        app:layout_constraintTop_toTopOf="parent"
+        app:point_color="@color/theme_white"
+        app:point_drawable="@drawable/ic_white_circle_space" />
+
+    <com.kaooa.objects.PointView
+        android:id="@+id/point_6"
+        android:layout_width="@dimen/point_space_size"
+        android:layout_height="@dimen/point_space_size"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/point_1"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintVertical_bias="0.51"
+        app:layout_constraintTop_toTopOf="parent"
+        app:point_color="@color/theme_white"
+        app:point_drawable="@drawable/ic_white_circle_space" />
+
+    <com.kaooa.objects.PointView
+        android:id="@+id/point_7"
+        android:layout_width="@dimen/point_space_size"
+        android:layout_height="@dimen/point_space_size"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/point_1"
+        app:layout_constraintHorizontal_bias="0.99"
+        app:layout_constraintVertical_bias="0.56"
+        app:layout_constraintTop_toTopOf="parent"
+        app:point_color="@color/theme_white"
+        app:point_drawable="@drawable/ic_white_circle_space" />
+
+    <com.kaooa.objects.PointView
+        android:id="@+id/point_8"
+        android:layout_width="@dimen/point_space_size"
+        android:layout_height="@dimen/point_space_size"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/point_1"
+        app:layout_constraintHorizontal_bias="0.59"
+        app:layout_constraintVertical_bias="0.55"
+        app:layout_constraintTop_toTopOf="parent"
+        app:point_color="@color/theme_white"
+        app:point_drawable="@drawable/ic_white_circle_space" />
+
+    <com.kaooa.objects.PointView
+        android:id="@+id/point_9"
+        android:layout_width="@dimen/point_space_size"
+        android:layout_height="@dimen/point_space_size"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/point_1"
+        app:layout_constraintHorizontal_bias="0.32"
+        app:layout_constraintVertical_bias="0.595"
+        app:layout_constraintTop_toTopOf="parent"
+        app:point_color="@color/theme_white"
+        app:point_drawable="@drawable/ic_white_circle_space" />
+
+    <com.kaooa.objects.PointView
+        android:id="@+id/point_10"
+        android:layout_width="@dimen/point_space_size"
+        android:layout_height="@dimen/point_space_size"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/point_1"
+        app:layout_constraintHorizontal_bias="0.185"
+        app:layout_constraintVertical_bias="0.53"
+        app:layout_constraintTop_toTopOf="parent"
+        app:point_color="@color/theme_white"
+        app:point_drawable="@drawable/ic_white_circle_space" />
+
+<!--    <com.kaooa.objects.PointView-->
+<!--        android:id="@+id/pointx"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="@dimen/point_space_size"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:scaleType="fitCenter"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintCircle="@id/point_1"-->
+<!--        app:layout_constraintCircleAngle="90"-->
+<!--        app:layout_constraintCircleRadius="@dimen/star_fourth"-->
+<!--        app:layout_constraintDimensionRatio="1:1"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/point_1"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:point_color="@color/theme_black"-->
+<!--        app:point_drawable="@drawable/ic_white_circle_space" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
