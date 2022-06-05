@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="app_padding">12dp</dimen>
+    <dimen name="app_padding">10dp</dimen>
+    <dimen name="map_side_margin">14dp</dimen>
+    <dimen name="point_scale">2.2</dimen>
     <dimen name="token_stroke_width">5dp</dimen>
+    <dimen name="point_space_size">39dp</dimen>
 </resources>
