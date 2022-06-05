@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Kaooa</string>
     <string name="game_settings">settings</string>
-    <string name="start_game">Tap to Play</string>
+    <string name="start_game">TAP TO PLAY</string>
 </resources>
