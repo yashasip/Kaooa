@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Kaooa</string>
     <string name="game_settings">settings</string>
-    <string name="start_game">Tap to Play</string>
+    <string name="start_game">TAP TO PLAY</string>
+    <string name="game_config_page_title">GAME MODE</string>
+    <string name="vs_string">vs</string>
+    <string name="play_button_description">Start Game</string>
 </resources>

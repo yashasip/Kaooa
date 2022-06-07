@@ -7,8 +7,6 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -46,8 +44,8 @@ public class PointView extends AppCompatImageButton {
     }
 
     public void scalePoint() {
-        ObjectAnimator scaleDrawableX = ObjectAnimator.ofFloat(this, "scaleX", 1f, 1.25f);
-        ObjectAnimator scaleDrawableY = ObjectAnimator.ofFloat(this, "scaleY", 1f, 1.25f);
+        ObjectAnimator scaleDrawableX = ObjectAnimator.ofFloat(this, "scaleX", 2.2f, 2.5f);
+        ObjectAnimator scaleDrawableY = ObjectAnimator.ofFloat(this, "scaleY", 2.2f, 2.5f);
         AnimatorSet scaleDrawableSet = new AnimatorSet();
         scaleDrawableSet.playTogether(scaleDrawableX, scaleDrawableY);
         scaleDrawableSet.setDuration(800);
