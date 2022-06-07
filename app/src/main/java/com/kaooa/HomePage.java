@@ -24,8 +24,8 @@ public class HomePage extends AppCompatActivity {
     }
 
     public void startGame() {
-        Intent startGameIntent = new Intent(HomePage.this, GamePage.class);
-        startActivity(startGameIntent);
+        Intent startGameConfigIntent = new Intent(HomePage.this, GameConfigPage.class);
+        startActivity(startGameConfigIntent);
     }
 
 }
