@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.kaooa.objects.PointView;
 
@@ -13,7 +14,7 @@ import java.util.HashMap;
 public class GamePage extends AppCompatActivity {
     static HashMap<String, ProgressBar> edgeSetMap;
 
-    boolean[][] starMapMatrix = { // adjacent matrix of the star map
+    static boolean[][] starMapMatrix = { // adjacent matrix of the star map
             {false, true, false, false, false, false, false, false, false, true},
             {true, false, true, true, false, false, false, false, false, true},
             {false, true, false, true, false, false, false, false, false, false},
@@ -73,6 +74,24 @@ public class GamePage extends AppCompatActivity {
         return findViewById(pointResId);
     }
 
+    public static HashMap<String, ProgressBar> getPointEdges(int pointNumber){
+        // use edge map to find all the edges
+        String edgeId;
+        HashMap<String, ProgressBar> pointEdges = new HashMap<>();
+        for(int i=0; i<10; i++){
+            if(starMapMatrix[pointNumber-1][i]){
+                if(pointNumber < i+1) // ensures sorted point number
+                    edgeId = "edge_"+ pointNumber +"_"+ (i+1);
+                else
+                    edgeId = "edge_"+ (i+1) +"_"+ (pointNumber);
+
+                pointEdges.put(edgeId, edgeSetMap.get(edgeId));
+            }
+        }
+
+        return pointEdges;
+    }
+
     void setEdge() {
         ProgressBar edgeView;
         int[] p1Loc = new int[2];
@@ -94,8 +113,9 @@ public class GamePage extends AppCompatActivity {
 
             // extending the edge
             length = (int) Math.sqrt(Math.pow(p1Loc[1] - p2Loc[1], 2) + Math.pow(p1Loc[0] - p2Loc[0], 2));
-            edgeView.setPivotX(0.0f); // overrding default scale by centre to scale on start
             edgeView.setScaleX(length / (float) edgeView.getWidth()); // assumes width of edgeView is > 0
+
+            edgeView.setIndeterminate(false);
 
             // setting the angle
             rotateAngle = (float) Math.toDegrees(Math.atan((double) (p1Loc[1] - p2Loc[1]) / (p1Loc[0] - p2Loc[0])));
