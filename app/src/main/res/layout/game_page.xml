@@ -28,9 +28,10 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_2"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/point_1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.494" />
+        app:layout_constraintVertical_bias="0.483" />
 
     <ProgressBar
         android:id="@+id/edge_1_10"
@@ -42,9 +43,10 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_10"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/point_1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.506" />
+        app:layout_constraintVertical_bias="0.518" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_1"
@@ -71,9 +73,10 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_3"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/point_2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.458" />
+        app:layout_constraintVertical_bias="0.439" />
 
     <ProgressBar
         android:id="@+id/edge_2_4"
@@ -85,9 +88,10 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_4"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/point_2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467" />
+        app:layout_constraintVertical_bias="0.459" />
 
     <ProgressBar
         android:id="@+id/edge_2_10"
@@ -104,7 +108,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/point_2"
         app:layout_constraintTop_toTopOf="@id/point_2"
-        app:layout_constraintVertical_bias="0.844" />
+        app:layout_constraintVertical_bias="0.488" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_2"
@@ -133,9 +137,10 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_4"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/point_3"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409" />
+        app:layout_constraintVertical_bias="0.425" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_3"
@@ -164,9 +169,10 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/point_4"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.447" />
+        app:layout_constraintVertical_bias="0.444" />
 
     <ProgressBar
         android:id="@+id/edge_4_6"
@@ -178,9 +184,10 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_6"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/point_4"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.457" />
+        app:layout_constraintVertical_bias="0.479" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_4"
@@ -212,7 +219,7 @@
         app:layout_constraintEnd_toStartOf="@+id/point_6"
         app:layout_constraintStart_toEndOf="@+id/point_5"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.479" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_5"
@@ -242,9 +249,10 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_7"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/point_6"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518" />
+        app:layout_constraintVertical_bias="0.532" />
 
     <ProgressBar
         android:id="@+id/edge_6_8"
@@ -257,9 +265,10 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_8"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toEndOf="@+id/point_6"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.546" />
+        app:layout_constraintVertical_bias="0.532" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_6"
@@ -291,7 +300,7 @@
         app:layout_constraintEnd_toStartOf="@+id/point_8"
         app:layout_constraintStart_toEndOf="@+id/point_7"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.561" />
+        app:layout_constraintVertical_bias="0.555" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_7"
@@ -322,9 +331,10 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/point_9"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="@+id/point_8"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.596" />
+        app:layout_constraintVertical_bias="0.572" />
 
     <ProgressBar
         android:id="@+id/edge_8_10"
@@ -337,9 +347,10 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/point_10"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/point_8"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.532" />
+        app:layout_constraintVertical_bias="0.54" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_8"
@@ -371,7 +382,7 @@
         app:layout_constraintEnd_toEndOf="@+id/point_10"
         app:layout_constraintStart_toStartOf="@+id/point_9"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.536" />
+        app:layout_constraintVertical_bias="0.561" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_9"
