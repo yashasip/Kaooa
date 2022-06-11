@@ -8,13 +8,13 @@
     android:padding="@dimen/app_padding"
     tools:context=".GamePage">
 
-    <ImageView
-        android:id="@+id/gameSettings"
+    <ImageButton
+        android:id="@+id/gamePause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:contentDescription="@string/game_settings"
-        android:onClick="openSettings"
-        android:src="@drawable/ic_game_settings"
+        android:src="@drawable/ic_game_pause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

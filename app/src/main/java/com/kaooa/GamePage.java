@@ -6,6 +6,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.kaooa.objects.EdgeView;
 import com.kaooa.objects.PointView;
@@ -13,6 +14,7 @@ import com.kaooa.objects.PointView;
 public class GamePage extends AppCompatActivity {
     static EdgeView[] edgeViews;
     static PointView lastClicked;
+    ImageButton pauseBtn;
 
     boolean[][] starMapMatrix = { // adjacent matrix of the star map
             {false, true, false, false, false, false, false, false, false, true},
@@ -33,12 +35,15 @@ public class GamePage extends AppCompatActivity {
         setContentView(R.layout.game_page);
 
         lastClicked = null;
+        pauseBtn = findViewById(R.id.gamePause);
 
         initializeEdgeSet();
+
+        pauseBtn.setOnClickListener(view -> openPauseMenu());
     }
 
-    public void openSettings(View view) {
-        setEdge();
+    public void openPauseMenu() {
+        setEdge(); // testing & debugging
     }
 
     private void initializeEdgeSet() {
