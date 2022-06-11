@@ -30,4 +30,8 @@ public class EdgeView extends ProgressBar {
         this.setScaleX(length / (float) this.getWidth()); // increase size
         this.setRotation(rotateAngle); // incline
     }
+
+    public boolean hasEndpoint(PointView point) {
+        return !endPoints[0].equals(point) && !endPoints[1].equals(point);
+    }
 }

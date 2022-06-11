@@ -2,19 +2,19 @@ package com.kaooa;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
+import com.kaooa.objects.EdgeView;
 import com.kaooa.objects.PointView;
 
-import java.util.HashMap;
-
 public class GamePage extends AppCompatActivity {
-    static HashMap<String, ProgressBar> edgeSetMap;
+    static EdgeView[] edgeViews;
+    static PointView lastClicked;
 
-    static boolean[][] starMapMatrix = { // adjacent matrix of the star map
+    boolean[][] starMapMatrix = { // adjacent matrix of the star map
             {false, true, false, false, false, false, false, false, false, true},
             {true, false, true, true, false, false, false, false, false, true},
             {false, true, false, true, false, false, false, false, false, false},
@@ -31,6 +31,9 @@ public class GamePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_page);
+
+        lastClicked = null;
+
         initializeEdgeSet();
     }
 
@@ -39,30 +42,30 @@ public class GamePage extends AppCompatActivity {
     }
 
     private void initializeEdgeSet() {
-        edgeSetMap = new HashMap<>(15);
-        int edgeId;
-        ProgressBar edgeView;
+        edgeViews = new EdgeView[15];
+        int edgeAddCount = 0;
+        int edgeResId;
+        String edgeId;
         String p1, p2;
+        PointView point1View, point2View;
 
         for (int i = 0; i < 10; i++) {
             for (int j = i; j < 10; j++) {
-                if (starMapMatrix[i][j]) { // if edge exists store <edgeId, edgeWidget(ProgressBar)>
+                if (starMapMatrix[i][j]) { // if edge exists store <edgeId, edgeWidget(EdgeView)>
                     // the current index value
                     p1 = String.valueOf(i + 1);
                     p2 = String.valueOf(j + 1);
+                    edgeId = "edge_" + p1 + "_" + p2;
+                    edgeResId = getResources().getIdentifier(edgeId, "id", getPackageName()); // fetch id
+                    edgeViews[edgeAddCount] = findViewById(edgeResId);
+                    point1View = getPointView(p1);
+                    point2View = getPointView(p2);
 
-                    edgeId = getResources().getIdentifier("edge_" + p1 + "_" + p2, "id", getPackageName()); // fetch id
-                    edgeView = findViewById(edgeId);
-                    edgeSetMap.put("edge_" + p1 + "_" + p2, edgeView);
+                    edgeViews[edgeAddCount].initialize(edgeId, point1View, point2View);
+                    edgeAddCount++;
                 }
             }
         }
-    }
-
-    private String[] getEdgeEndpoints(String edgeId) {
-        String[] splitString = edgeId.split("_"); // has {"edge", "point1", "point2"}
-
-        return new String[]{splitString[1], splitString[2]}; // return only point values
     }
 
     private PointView getPointView(String pointId) {
@@ -74,52 +77,54 @@ public class GamePage extends AppCompatActivity {
         return findViewById(pointResId);
     }
 
-    public static HashMap<String, ProgressBar> getPointEdges(int pointNumber){
-        // use edge map to find all the edges
-        String edgeId;
-        HashMap<String, ProgressBar> pointEdges = new HashMap<>();
-        for(int i=0; i<10; i++){
-            if(starMapMatrix[pointNumber-1][i]){
-                if(pointNumber < i+1) // ensures sorted point number
-                    edgeId = "edge_"+ pointNumber +"_"+ (i+1);
-                else
-                    edgeId = "edge_"+ (i+1) +"_"+ (pointNumber);
+    void setEdge() {
+        int[] loc1 = new int[2];
+        int[] loc2 = new int[2];
+        for (int i = 0; i < 15; i++) {
+            // get coordinates (must be calculated on the go)
+            edgeViews[i].endPoints[0].getLocationOnScreen(loc1);
+            edgeViews[i].endPoints[1].getLocationOnScreen(loc2);
 
-                pointEdges.put(edgeId, edgeSetMap.get(edgeId));
-            }
+            edgeViews[i].setupEdge(loc1, loc2);
         }
-
-        return pointEdges;
     }
 
-    void setEdge() {
-        ProgressBar edgeView;
-        int[] p1Loc = new int[2];
-        int[] p2Loc = new int[2];
-        int length;
-        float rotateAngle;
+    static void resetAnimateOnClickPoint() {
+        if (lastClicked == null) // for first point click
+            return;
 
-        for (String edgeId : edgeSetMap.keySet()) {
-            String[] endpoints = getEdgeEndpoints(edgeId);
-            edgeView = edgeSetMap.get(edgeId);
-            assert edgeView != null; // check for edgeView != null
+        lastClicked.resetPointScale();
 
-            PointView point1View = getPointView(endpoints[0]);
-            PointView point2View = getPointView(endpoints[1]);
+        for (EdgeView edgeView : edgeViews) {
+            if (edgeView.hasEndpoint(lastClicked))
+                continue;
 
-            // get point space coordinates on screen
-            point1View.getLocationOnScreen(p1Loc);
-            point2View.getLocationOnScreen(p2Loc);
+            edgeView.setIndeterminate(false); // reset edge flow
 
-            // extending the edge
-            length = (int) Math.sqrt(Math.pow(p1Loc[1] - p2Loc[1], 2) + Math.pow(p1Loc[0] - p2Loc[0], 2));
-            edgeView.setScaleX(length / (float) edgeView.getWidth()); // assumes width of edgeView is > 0
+            // reset inverted edges
+            if (!edgeView.endPoints[0].equals(lastClicked)) {
+                edgeView.setScaleX(-edgeView.getScaleX());
+            }
+        }
+    }
 
-            edgeView.setIndeterminate(false);
+    public static void animateOnClickPoint(PointView point) {
+        if (point.equals(lastClicked))
+            return;
 
-            // setting the angle
-            rotateAngle = (float) Math.toDegrees(Math.atan((double) (p1Loc[1] - p2Loc[1]) / (p1Loc[0] - p2Loc[0])));
-            edgeView.setRotation(rotateAngle);
+        resetAnimateOnClickPoint();
+        lastClicked = point;
+
+        for (EdgeView edgeView : edgeViews) {
+            if (edgeView.hasEndpoint(point))
+                continue;
+
+            edgeView.setIndeterminate(true); // set edge flow
+            edgeView.setIndeterminateTintList(ColorStateList.valueOf(Color.parseColor(point.pointColor))); // set color
+
+            if (!edgeView.endPoints[0].equals(point)) { // if starts with the point edge should be inverted
+                edgeView.setScaleX(-edgeView.getScaleX());
+            }
         }
     }
 }
