@@ -1,6 +1,6 @@
 package com.kaooa.enums;
 
-public enum States {
+public enum State {
     NONE,
     CROW,
     VULTURE
