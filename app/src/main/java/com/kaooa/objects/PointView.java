@@ -3,10 +3,12 @@ package com.kaooa.objects;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -14,6 +16,8 @@ import androidx.appcompat.widget.AppCompatImageButton;
 
 import com.kaooa.GamePage;
 import com.kaooa.R;
+
+import java.util.Objects;
 
 public class PointView extends AppCompatImageButton {
 
@@ -36,7 +40,7 @@ public class PointView extends AppCompatImageButton {
                 pointNumber = Integer.parseInt(pointId.split("_")[1]);
             pointColor = typedArray.getString(R.styleable.PointView_point_color); // getColorCode as String
 
-            pointDrawable = AppCompatResources.getDrawable(context, pointDrawableId); // drawable object
+            pointDrawable = Objects.requireNonNull(AppCompatResources.getDrawable(context, pointDrawableId)).mutate(); // mutable drawable object
 
             initialScaleX = this.getScaleX();
             initialScaleY = this.getScaleY();
@@ -46,11 +50,17 @@ public class PointView extends AppCompatImageButton {
         } finally {
             typedArray.recycle(); // garbage collection handler
         }
-        this.setOnClickListener(view -> animatePoint());
+        this.setOnClickListener(view -> onPointClick());
     }
 
     public void changeColor(String colorCode) {
-        pointDrawable.setTint(Color.parseColor(colorCode));
+        this.pointColor = colorCode;
+        pointDrawable.setTint(Color.parseColor(this.pointColor));
+    }
+
+    public void changeColor(int colorCode) {
+        this.pointColor = "#" + Integer.toHexString(colorCode).toUpperCase();
+        pointDrawable.setTint(Color.parseColor(this.pointColor));
     }
 
     public void resetPointScale() {
@@ -75,8 +85,12 @@ public class PointView extends AppCompatImageButton {
         scalePointSet.start();
     }
 
-    public void animatePoint() {
+    public void onPointClick() {
+        TextView turnHeader, turnGuideline; // avoids static declaration
+        turnHeader = findViewById(R.id.turn_header); // declare and using prevents memory leak
+        turnGuideline = findViewById(R.id.turn_guideline);
+
         increasePointScale();
-        GamePage.animateOnClickPoint(this);
+        GamePage.updateGameState(this, turnHeader, turnGuideline);
     }
 }
