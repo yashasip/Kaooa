@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.kaooa.objects.EdgeView;
 import com.kaooa.objects.PointView;
 
+import java.lang.ref.WeakReference;
+
 public class GamePage extends AppCompatActivity {
     static EdgeView[] edgeViews;
     static PointView lastClicked;
@@ -28,7 +30,7 @@ public class GamePage extends AppCompatActivity {
     static int unplacedCrowCount = 7; // crow count
 
     // Headers
-    TextView turnHeader, turnGuideline;
+    static WeakReference<TextView> turnHeader, turnGuideline; // used weak reference
 
     // Header and Guideline
     static String crowTurnHeaderText;
@@ -73,8 +75,8 @@ public class GamePage extends AppCompatActivity {
         vultureColor = getResources().getColor(R.color.theme_red);
 
         pauseBtn = findViewById(R.id.gamePause);
-        turnHeader = findViewById(R.id.turn_header);
-        turnGuideline = findViewById(R.id.turn_guideline);
+        turnHeader = new WeakReference<>(findViewById(R.id.turn_header));
+        turnGuideline = new WeakReference<>(findViewById(R.id.turn_guideline));
 
         initializeHeaders();
         initializeEdgeSet();
@@ -157,27 +159,27 @@ public class GamePage extends AppCompatActivity {
         }
     }
 
-    private static void setNextTurn(TextView turnHeader, TextView turnGuideline) {
+    private static void setNextTurn() {
         if (crowsTurn) {
             crowsTurn = false; // swap turn
             vulturesTurn = true;
 
             // set next turn headers
-            turnHeader.setText(vultureTurnHeaderText);
+            turnHeader.get().setText(vultureTurnHeaderText);
             if (!vulturePlaced)
-                turnGuideline.setText(vulturePlaceGuideline);
+                turnGuideline.get().setText(vulturePlaceGuideline);
             else
-                turnGuideline.setText(vultureMoveGuideline);
+                turnGuideline.get().setText(vultureMoveGuideline);
         } else if (vulturesTurn) {
             vulturesTurn = false; // swap turn
             crowsTurn = true;
 
             // set next turn headers
-            turnHeader.setText(crowTurnHeaderText);
+            turnHeader.get().setText(crowTurnHeaderText);
             if (!crowsPlaced)
-                turnGuideline.setText(crowPlaceGuideline);
+                turnGuideline.get().setText(crowPlaceGuideline);
             else
-                turnGuideline.setText(crowMoveGuideline);
+                turnGuideline.get().setText(crowMoveGuideline);
         }
     }
 
@@ -198,11 +200,11 @@ public class GamePage extends AppCompatActivity {
 
     void initializeHeaders() { // initialize headers when Game Begins
         if (crowsTurn) {
-            turnHeader.setText(crowTurnHeaderText);
-            turnGuideline.setText(crowMoveGuideline);
+            turnHeader.get().setText(crowTurnHeaderText);
+            turnGuideline.get().setText(crowMoveGuideline);
         } else if (vulturesTurn) {
-            turnHeader.setText(vultureTurnHeaderText);
-            turnGuideline.setText(vultureMoveGuideline);
+            turnHeader.get().setText(vultureTurnHeaderText);
+            turnGuideline.get().setText(vultureMoveGuideline);
         }
     }
 
@@ -232,9 +234,9 @@ public class GamePage extends AppCompatActivity {
         }
     }
 
-    public static void updateGameState(PointView point, TextView turnHeader, TextView turnGuideline) {
+    public static void updateGameState(PointView point) {
         animateOnClickPoint(point);
         setTurn(point);
-        setNextTurn(turnHeader, turnGuideline);
+        setNextTurn();
     }
 }

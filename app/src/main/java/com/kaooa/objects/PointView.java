@@ -86,11 +86,7 @@ public class PointView extends AppCompatImageButton {
     }
 
     public void onPointClick() {
-        TextView turnHeader, turnGuideline; // avoids static declaration
-        turnHeader = findViewById(R.id.turn_header); // declare and using prevents memory leak
-        turnGuideline = findViewById(R.id.turn_guideline);
-
         increasePointScale();
-        GamePage.updateGameState(this, turnHeader, turnGuideline);
+        GamePage.updateGameState(this);
     }
 }
