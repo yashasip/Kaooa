@@ -74,7 +74,7 @@ public class PointView extends AppCompatImageButton {
         scaleDrawableSet.start();
     }
 
-    private void increasePointScale() {
+    public void increasePointScale() {
         ObjectAnimator scaleDrawableX = ObjectAnimator.ofFloat(this, "scaleX", initialScaleX, 1.2f * initialScaleX);
         ObjectAnimator scaleDrawableY = ObjectAnimator.ofFloat(this, "scaleY", initialScaleY, 1.2f * initialScaleY);
 
@@ -86,7 +86,6 @@ public class PointView extends AppCompatImageButton {
     }
 
     public void onPointClick() {
-        increasePointScale();
         GamePage.updateGameState(this);
     }
 }

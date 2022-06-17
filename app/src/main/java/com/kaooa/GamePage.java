@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.kaooa.enums.State;
 import com.kaooa.objects.EdgeView;
 import com.kaooa.objects.PointView;
 
@@ -44,6 +45,7 @@ public class GamePage extends AppCompatActivity {
     static int crowColor;
     static int vultureColor;
 
+    static State[] placeMatrix = {State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE};
 
     boolean[][] starMapMatrix = { // adjacent matrix of the star map
             {false, true, false, false, false, false, false, false, false, true},
@@ -185,14 +187,17 @@ public class GamePage extends AppCompatActivity {
 
     static void setTurn(PointView point) {
         if (crowsTurn) {
-            if (!crowsPlaced) // color is set in placement phase only
+            if (!crowsPlaced) { // color is set in placement phase only
                 point.changeColor(crowColor);
+                placeMatrix[point.pointNumber-1] = State.CROW;
+            }
             if (--unplacedCrowCount == 0) { // reduce placed crow count
                 crowsPlaced = true; // when all crows are placed
             }
         } else if (vulturesTurn) {
             if (!vulturePlaced) { // color is set in placement phase only
                 point.changeColor(vultureColor);
+                placeMatrix[point.pointNumber-1] = State.VULTURE;
                 vulturePlaced = true; // when one vulture is placed
             }
         }
@@ -221,6 +226,8 @@ public class GamePage extends AppCompatActivity {
             return;
         }
 
+        point.increasePointScale();
+
         for (EdgeView edgeView : edgeViews) {
             if (edgeView.hasEndpoint(point))
                 continue;
@@ -235,6 +242,9 @@ public class GamePage extends AppCompatActivity {
     }
 
     public static void updateGameState(PointView point) {
+        if(placeMatrix[point.pointNumber-1] != State.NONE)
+            return;
+
         animateOnClickPoint(point);
         setTurn(point);
         setNextTurn();
