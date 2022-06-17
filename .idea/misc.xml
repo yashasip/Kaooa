@@ -6,7 +6,6 @@
         <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.107" />
         <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/drawable/circle_token.xml" value="0.1" />
         <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/drawable/gradient_background.xml" value="0.1215" />
-        <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/drawable/ic_game_phone.xml" value="0.1615" />
         <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/drawable/ic_game_settings.xml" value="0.1" />
         <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/drawable/ic_launcher_background.xml" value="0.107" />
         <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/drawable/ic_phone.xml" value="0.145" />
@@ -19,9 +18,14 @@
         <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/drawable/point_space_stroke.xml" value="0.1" />
         <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/layout/activity_game_page.xml" value="0.2394185549380077" />
         <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/layout/activity_main.xml" value="0.22916666666666666" />
+<<<<<<< HEAD
+        <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/layout/game_page.xml" value="0.1" />
+        <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/layout/home_page.xml" value="0.18683197947840957" />
+=======
         <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/layout/game_config_page.xml" value="0.1638888888888889" />
         <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/layout/game_page.xml" value="0.2" />
         <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/layout/home_page.xml" value="0.2" />
+>>>>>>> main
         <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/layout/page_home.xml" value="0.21875" />
         <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1955" />
         <entry key="..\:/Users/Yashas/AndroidStudioProjects/Kaooa/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.107" />
