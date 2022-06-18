@@ -17,6 +17,7 @@ import java.lang.ref.WeakReference;
 public class GamePage extends AppCompatActivity {
     static EdgeView[] edgeViews;
     static PointView lastClicked;
+    PointView[] pointViews;
     ImageButton pauseBtn;
 
     // game parameters
@@ -81,6 +82,7 @@ public class GamePage extends AppCompatActivity {
         turnGuideline = new WeakReference<>(findViewById(R.id.turn_guideline));
 
         initializeHeaders();
+        initializePointSet();
         initializeEdgeSet();
 
         pauseBtn.setOnClickListener(view -> openPauseMenu());
@@ -90,40 +92,38 @@ public class GamePage extends AppCompatActivity {
         setEdge(); // testing & debugging
     }
 
+    private void initializePointSet(){
+        int pointResId;
+
+        pointViews = new PointView[10];
+
+        // fetch integer ids of point
+        for(int i = 0; i<10; i++){
+            pointResId = getResources().getIdentifier("point_" + (i+1), "id", getPackageName());
+            pointViews[i] = findViewById(pointResId);
+            pointViews[i].setOnClickListener(point -> updateGameState((PointView) point));
+        }
+    }
+
     private void initializeEdgeSet() {
         edgeViews = new EdgeView[15];
         int edgeAddCount = 0;
         int edgeResId;
         String edgeId;
-        String p1, p2;
-        PointView point1View, point2View;
 
         for (int i = 0; i < 10; i++) {
             for (int j = i; j < 10; j++) {
                 if (starMapMatrix[i][j]) { // if edge exists store <edgeId, edgeWidget(EdgeView)>
                     // the current index value
-                    p1 = String.valueOf(i + 1);
-                    p2 = String.valueOf(j + 1);
-                    edgeId = "edge_" + p1 + "_" + p2;
+                    edgeId = "edge_" + (i+1) + "_" + (j+1);
                     edgeResId = getResources().getIdentifier(edgeId, "id", getPackageName()); // fetch id
                     edgeViews[edgeAddCount] = findViewById(edgeResId);
-                    point1View = getPointView(p1);
-                    point2View = getPointView(p2);
 
-                    edgeViews[edgeAddCount].initialize(edgeId, point1View, point2View);
+                    edgeViews[edgeAddCount].initialize(edgeId, pointViews[i], pointViews[j]);
                     edgeAddCount++;
                 }
             }
         }
-    }
-
-    private PointView getPointView(String pointId) {
-        int pointResId;
-
-        // fetch integer ids of point
-        pointResId = getResources().getIdentifier("point_" + pointId, "id", getPackageName());
-
-        return findViewById(pointResId);
     }
 
     void setEdge() {
@@ -241,7 +241,7 @@ public class GamePage extends AppCompatActivity {
         }
     }
 
-    public static void updateGameState(PointView point) {
+    void updateGameState(PointView point) {
         if(placeMatrix[point.pointNumber-1] != State.NONE)
             return;
 

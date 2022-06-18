@@ -50,7 +50,6 @@ public class PointView extends AppCompatImageButton {
         } finally {
             typedArray.recycle(); // garbage collection handler
         }
-        this.setOnClickListener(view -> onPointClick());
     }
 
     public void changeColor(String colorCode) {
@@ -83,9 +82,5 @@ public class PointView extends AppCompatImageButton {
         scalePointSet.setDuration(600);
 
         scalePointSet.start();
-    }
-
-    public void onPointClick() {
-        GamePage.updateGameState(this);
     }
 }
