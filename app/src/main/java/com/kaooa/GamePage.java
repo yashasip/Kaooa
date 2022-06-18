@@ -15,38 +15,38 @@ import com.kaooa.objects.PointView;
 import java.lang.ref.WeakReference;
 
 public class GamePage extends AppCompatActivity {
-    static EdgeView[] edgeViews;
-    static PointView lastClicked;
+    EdgeView[] edgeViews;
+    PointView lastClicked;
     PointView[] pointViews;
     ImageButton pauseBtn;
 
     // game parameters
     // turn
-    static boolean crowsTurn = true; // crow starts game
-    static boolean vulturesTurn = false;
+    boolean crowsTurn = true; // crow starts game
+    boolean vulturesTurn = false;
 
     // placement
-    static boolean crowsPlaced = false;
-    static boolean vulturePlaced = false;
+    boolean crowsPlaced = false;
+    boolean vulturePlaced = false;
 
-    static int unplacedCrowCount = 7; // crow count
+    int unplacedCrowCount = 7; // crow count
 
     // Headers
-    static WeakReference<TextView> turnHeader, turnGuideline; // used weak reference
+    WeakReference<TextView> turnHeader, turnGuideline; // used weak reference
 
     // Header and Guideline
-    static String crowTurnHeaderText;
-    static String vultureTurnHeaderText;
-    static String crowPlaceGuideline;
-    static String vulturePlaceGuideline;
-    static String crowMoveGuideline;
-    static String vultureMoveGuideline;
+    String crowTurnHeaderText;
+    String vultureTurnHeaderText;
+    String crowPlaceGuideline;
+    String vulturePlaceGuideline;
+    String crowMoveGuideline;
+    String vultureMoveGuideline;
 
     // bird colors
-    static int crowColor;
-    static int vultureColor;
+    int crowColor;
+    int vultureColor;
 
-    static State[] placeMatrix = {State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE};
+    State[] placeMatrix = {State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE};
 
     boolean[][] starMapMatrix = { // adjacent matrix of the star map
             {false, true, false, false, false, false, false, false, false, true},
@@ -138,7 +138,7 @@ public class GamePage extends AppCompatActivity {
         }
     }
 
-    static void resetAnimateOnClickPoint() {
+    void resetAnimateOnClickPoint() {
         if (lastClicked == null) // for first point click
             return;
 
@@ -161,7 +161,7 @@ public class GamePage extends AppCompatActivity {
         }
     }
 
-    private static void setNextTurn() {
+    private void setNextTurn() {
         if (crowsTurn) {
             crowsTurn = false; // swap turn
             vulturesTurn = true;
@@ -185,7 +185,7 @@ public class GamePage extends AppCompatActivity {
         }
     }
 
-    static void setTurn(PointView point) {
+    void setTurn(PointView point) {
         if (crowsTurn) {
             if (!crowsPlaced) { // color is set in placement phase only
                 point.changeColor(crowColor);
@@ -213,7 +213,7 @@ public class GamePage extends AppCompatActivity {
         }
     }
 
-    private static void animateOnClickPoint(PointView point) {
+    private void animateOnClickPoint(PointView point) {
         if (point.equals(lastClicked))
             return;
 
