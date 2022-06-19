@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -249,6 +250,15 @@ public class GamePage extends AppCompatActivity {
         return null;
     }
 
+    public PointView getCrowPoint(){ // returns the crow point
+        for(int i=0; i<10; i++){
+            if(placeMatrix[i].equals(State.CROW)){ // search based on placeMatrix
+                return pointViews[i];
+            }
+        }
+        return null;
+    }
+
     boolean isFlightKill(int toPointNo){
         if(!placeMatrix[toPointNo-1].equals(State.NONE)) // if not empty space
             return false;
@@ -317,10 +327,33 @@ public class GamePage extends AppCompatActivity {
                 setNextTurn();
                 lastClicked = point;
             }
+            if(crowsTurn && crowsPlaced){ // for crows next move turn
+                PointView p = getCrowPoint();
+                animateOnClickPoint(p);
+                lastClicked = p;
+            }
+            return;
+        }
+        else if(crowsTurn && crowsPlaced){
+            if(placeMatrix[point.pointNumber-1].equals(State.CROW)) {
+                resetAnimateOnClickPoint();
+                animateOnClickPoint(point);
+                lastClicked = point;
+            }else if(isAdjacent(lastClicked.pointNumber, point.pointNumber)){
+                movePoint(lastClicked, point);
+                resetAnimateOnClickPoint();
+                setNextTurn();
+                lastClicked = point;
+            }
+            if(vulturesTurn && vulturePlaced){ // keeps the next turn of vulture ready, if its placed
+                PointView p = getVulturePoint();
+                animateOnClickPoint(p); // direct next turn to vulture
+                lastClicked = p;
+            }
             return;
         }
 
-        if (point.equals(lastClicked))
+        if (point.equals(lastClicked)) // place phase
             return;
 
         resetAnimateOnClickPoint();
@@ -334,7 +367,7 @@ public class GamePage extends AppCompatActivity {
         setNextTurn();
         if(vulturesTurn && vulturePlaced){ // keeps the next turn of vulture ready, if its placed
             PointView p = getVulturePoint();
-            animateOnClickPoint(p);
+            animateOnClickPoint(p); // direct next turn to vulture
             lastClicked = p;
         }
     }
