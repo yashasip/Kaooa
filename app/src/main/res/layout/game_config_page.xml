@@ -22,12 +22,12 @@
         android:id="@+id/game_mode_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/game_config_page_title"
         android:fontFamily="@font/lilitaone_regular"
-        android:textColor="@color/theme_black"
-        android:textSize="@dimen/game_config_page_title"
         android:shadowColor="@color/theme_black"
         android:shadowRadius="2.0"
+        android:text="@string/game_config_page_title"
+        android:textColor="@color/theme_black"
+        android:textSize="@dimen/game_config_page_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,8 +39,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/vs_top_margin"
-        android:text="@string/vs_string"
         android:fontFamily="@font/lilitaone_regular"
+        android:text="@string/vs_string"
         android:textColor="@color/theme_black"
         android:textSize="@dimen/vs_text"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,37 +48,28 @@
         app:layout_constraintTop_toBottomOf="@+id/game_mode_title" />
 
 
-    <com.kaooa.objects.PointView
+    <ImageButton
         android:id="@+id/play_as_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        android:scaleX="@dimen/point_scale"
-        android:scaleY="@dimen/point_scale"
+        android:rotationY="180"
         app:layout_constraintEnd_toStartOf="@id/vs_text"
         app:layout_constraintHorizontal_bias="0.775"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/game_mode_title"
-        app:point_color="@color/theme_red"
-        app:point_drawable="@drawable/ic_white_circle_space" />
+        app:layout_constraintTop_toBottomOf="@+id/game_mode_title" />
 
-    <com.kaooa.objects.PointView
+    <ImageButton
         android:id="@+id/play_as_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        android:scaleX="@dimen/point_scale"
-        android:scaleY="@dimen/point_scale"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.225"
         app:layout_constraintStart_toEndOf="@id/vs_text"
-        app:layout_constraintTop_toBottomOf="@+id/game_mode_title"
-        app:point_color="@color/theme_black"
-        app:point_drawable="@drawable/ic_white_circle_space" />
+        app:layout_constraintTop_toBottomOf="@+id/game_mode_title" />
 
     <ImageButton
         android:id="@+id/player_type_1"
