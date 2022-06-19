@@ -32,7 +32,7 @@ public class GamePage extends AppCompatActivity {
     int unplacedCrowCount = 7; // crow count
 
     // Headers
-    WeakReference<TextView> turnHeader, turnGuideline; // used weak reference
+    TextView turnHeader, turnGuideline; // used weak reference
 
     // Header and Guideline
     String crowTurnHeaderText;
@@ -88,8 +88,8 @@ public class GamePage extends AppCompatActivity {
         noColor = getResources().getColor(R.color.theme_white);
 
         pauseBtn = findViewById(R.id.gamePause);
-        turnHeader = new WeakReference<>(findViewById(R.id.turn_header));
-        turnGuideline = new WeakReference<>(findViewById(R.id.turn_guideline));
+        turnHeader = findViewById(R.id.turn_header);
+        turnGuideline = findViewById(R.id.turn_guideline);
 
         initializeHeaders();
         initializePointSet();
@@ -177,21 +177,21 @@ public class GamePage extends AppCompatActivity {
             vulturesTurn = true;
 
             // set next turn headers
-            turnHeader.get().setText(vultureTurnHeaderText);
+            turnHeader.setText(vultureTurnHeaderText);
             if (!vulturePlaced)
-                turnGuideline.get().setText(vulturePlaceGuideline);
+                turnGuideline.setText(vulturePlaceGuideline);
             else
-                turnGuideline.get().setText(vultureMoveGuideline);
+                turnGuideline.setText(vultureMoveGuideline);
         } else if (vulturesTurn) {
             vulturesTurn = false; // swap turn
             crowsTurn = true;
 
             // set next turn headers
-            turnHeader.get().setText(crowTurnHeaderText);
+            turnHeader.setText(crowTurnHeaderText);
             if (!crowsPlaced)
-                turnGuideline.get().setText(crowPlaceGuideline);
+                turnGuideline.setText(crowPlaceGuideline);
             else
-                turnGuideline.get().setText(crowMoveGuideline);
+                turnGuideline.setText(crowMoveGuideline);
         }
     }
 
@@ -215,11 +215,11 @@ public class GamePage extends AppCompatActivity {
 
     void initializeHeaders() { // initialize headers when Game Begins
         if (crowsTurn) {
-            turnHeader.get().setText(crowTurnHeaderText);
-            turnGuideline.get().setText(crowMoveGuideline);
+            turnHeader.setText(crowTurnHeaderText);
+            turnGuideline.setText(crowMoveGuideline);
         } else if (vulturesTurn) {
-            turnHeader.get().setText(vultureTurnHeaderText);
-            turnGuideline.get().setText(vultureMoveGuideline);
+            turnHeader.setText(vultureTurnHeaderText);
+            turnGuideline.setText(vultureMoveGuideline);
         }
     }
 
