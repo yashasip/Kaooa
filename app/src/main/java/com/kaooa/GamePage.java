@@ -214,13 +214,8 @@ public class GamePage extends AppCompatActivity {
     }
 
     void initializeHeaders() { // initialize headers when Game Begins
-        if (crowsTurn) {
-            turnHeader.setText(crowTurnHeaderText);
-            turnGuideline.setText(crowMoveGuideline);
-        } else if (vulturesTurn) {
-            turnHeader.setText(vultureTurnHeaderText);
-            turnGuideline.setText(vultureMoveGuideline);
-        }
+        turnHeader.setText(crowTurnHeaderText); // crow starts
+        turnGuideline.setText(crowPlaceGuideline);
     }
 
     private void animateOnClickPoint(PointView point) {
