@@ -2,6 +2,8 @@ package com.kaooa;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,12 +12,17 @@ import android.widget.Toast;
 
 public class HomePage extends AppCompatActivity {
 
+    TextView gameStartText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
 
-        TextView gameStartText = findViewById(R.id.gameStart);
+        gameStartText = findViewById(R.id.gameStart);
+
+        blinkText();
+
         gameStartText.setOnClickListener(view -> startGame());
     }
 
@@ -26,6 +33,16 @@ public class HomePage extends AppCompatActivity {
     public void startGame() {
         Intent startGameConfigIntent = new Intent(HomePage.this, GameConfigPage.class);
         startActivity(startGameConfigIntent);
+    }
+
+    private void blinkText() {
+        ObjectAnimator blinker = ObjectAnimator.ofFloat(gameStartText, "alpha", 0f);
+
+        blinker.setDuration(1300);
+        blinker.setRepeatCount(ObjectAnimator.INFINITE);
+        blinker.setRepeatMode(ObjectAnimator.REVERSE);
+
+        blinker.start();
     }
 
 }
