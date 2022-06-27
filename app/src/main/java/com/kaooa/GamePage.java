@@ -48,7 +48,7 @@ public class GamePage extends AppCompatActivity {
     int vultureColor;
     int noColor;
 
-    State[] placeMatrix = {State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE,State.NONE};
+    State[] placeMatrix = {State.NONE, State.NONE, State.NONE, State.NONE, State.NONE, State.NONE, State.NONE, State.NONE, State.NONE, State.NONE};
 
     boolean[][] starMapMatrix = { // adjacent matrix of the star map
             {false, true, false, false, false, false, false, false, false, true},
@@ -64,11 +64,11 @@ public class GamePage extends AppCompatActivity {
     };
 
     int[][] starStraightLinePaths = { // straightLines Possible in Star Map
-            {1,2,4,5},
-            {5,6,8,9},
-            {9,10,2,3},
-            {3,4,6,7},
-            {7,8,10,1}
+            {1, 2, 4, 5},
+            {5, 6, 8, 9},
+            {9, 10, 2, 3},
+            {3, 4, 6, 7},
+            {7, 8, 10, 1}
     };
 
     @Override
@@ -103,14 +103,14 @@ public class GamePage extends AppCompatActivity {
         setEdge(); // testing & debugging
     }
 
-    private void initializePointSet(){
+    private void initializePointSet() {
         int pointResId;
 
         pointViews = new PointView[10];
 
         // fetch integer ids of point
-        for(int i = 0; i<10; i++){
-            pointResId = getResources().getIdentifier("point_" + (i+1), "id", getPackageName());
+        for (int i = 0; i < 10; i++) {
+            pointResId = getResources().getIdentifier("point_" + (i + 1), "id", getPackageName());
             pointViews[i] = findViewById(pointResId);
             pointViews[i].setOnClickListener(point -> updateGameState((PointView) point));
         }
@@ -126,7 +126,7 @@ public class GamePage extends AppCompatActivity {
             for (int j = i; j < 10; j++) {
                 if (starMapMatrix[i][j]) { // if edge exists store <edgeId, edgeWidget(EdgeView)>
                     // the current index value
-                    edgeId = "edge_" + (i+1) + "_" + (j+1);
+                    edgeId = "edge_" + (i + 1) + "_" + (j + 1);
                     edgeResId = getResources().getIdentifier(edgeId, "id", getPackageName()); // fetch id
                     edgeViews[edgeAddCount] = findViewById(edgeResId);
 
@@ -200,7 +200,7 @@ public class GamePage extends AppCompatActivity {
         if (crowsTurn) {
             if (!crowsPlaced) { // color is set in placement phase only
                 point.changeColor(crowColor);
-                placeMatrix[point.pointNumber-1] = State.CROW;
+                placeMatrix[point.pointNumber - 1] = State.CROW;
             }
             if (--unplacedCrowCount == 0) { // reduce placed crow count
                 crowsPlaced = true; // when all crows are placed
@@ -208,7 +208,7 @@ public class GamePage extends AppCompatActivity {
         } else if (vulturesTurn) {
             if (!vulturePlaced) { // color is set in placement phase only
                 point.changeColor(vultureColor);
-                placeMatrix[point.pointNumber-1] = State.VULTURE;
+                placeMatrix[point.pointNumber - 1] = State.VULTURE;
                 vulturePlaced = true; // when one vulture is placed
             }
         }
@@ -241,39 +241,39 @@ public class GamePage extends AppCompatActivity {
         }
     }
 
-    public PointView getVulturePoint(){
-        for(int i=0; i<10; i++){
-            if(placeMatrix[i].equals(State.VULTURE)){ // search based on placeMatrix
+    public PointView getVulturePoint() {
+        for (int i = 0; i < 10; i++) {
+            if (placeMatrix[i].equals(State.VULTURE)) { // search based on placeMatrix
                 return pointViews[i];
             }
         }
         return null;
     }
 
-    public PointView getCrowPoint(){ // returns the crow point
-        for(int i=0; i<10; i++){
-            if(placeMatrix[i].equals(State.CROW)){ // search based on placeMatrix
+    public PointView getCrowPoint() { // returns the crow point
+        for (int i = 0; i < 10; i++) {
+            if (placeMatrix[i].equals(State.CROW)) { // search based on placeMatrix
                 return pointViews[i];
             }
         }
         return null;
     }
 
-    boolean isFlightKill(int toPointNo){
-        if(!placeMatrix[toPointNo-1].equals(State.NONE)) // if not empty space
+    boolean isFlightKill(int toPointNo) {
+        if (!placeMatrix[toPointNo - 1].equals(State.NONE)) // if not empty space
             return false;
 
-       int vultureNo = getVulturePoint().pointNumber;
-        for(int i = 0; i<5; i++){
-            for(int j = 0; j<2; j++){
+        int vultureNo = getVulturePoint().pointNumber;
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 2; j++) {
                 // if connecting node not crow
-                if(!placeMatrix[starStraightLinePaths[i][j+1]-1].equals(State.CROW))
+                if (!placeMatrix[starStraightLinePaths[i][j + 1] - 1].equals(State.CROW))
                     continue;
 
                 // check if straight line path
-                if(starStraightLinePaths[i][j] == vultureNo && starStraightLinePaths[i][j+2]  == toPointNo)
+                if (starStraightLinePaths[i][j] == vultureNo && starStraightLinePaths[i][j + 2] == toPointNo)
                     return true;
-                else if(starStraightLinePaths[i][j] == toPointNo && starStraightLinePaths[i][j+2] == vultureNo) // reverse order check
+                else if (starStraightLinePaths[i][j] == toPointNo && starStraightLinePaths[i][j + 2] == vultureNo) // reverse order check
                     return true;
             }
         }
@@ -285,41 +285,52 @@ public class GamePage extends AppCompatActivity {
         fromPoint.changeColor(toPoint.pointColor);
         toPoint.changeColor(tempColor);
 
-        State tempState = placeMatrix[fromPoint.pointNumber-1]; // swap state
-        placeMatrix[fromPoint.pointNumber-1] = placeMatrix[toPoint.pointNumber-1];
-        placeMatrix[toPoint.pointNumber-1] = tempState;
+        State tempState = placeMatrix[fromPoint.pointNumber - 1]; // swap state
+        placeMatrix[fromPoint.pointNumber - 1] = placeMatrix[toPoint.pointNumber - 1];
+        placeMatrix[toPoint.pointNumber - 1] = tempState;
     }
 
-    public void killCrow(PointView point){
+    public void killCrow(PointView point) {
         point.changeColor(noColor); // remove bird
-        placeMatrix[point.pointNumber-1] = State.NONE; // remove bird from placeMatrix
+        placeMatrix[point.pointNumber - 1] = State.NONE; // remove bird from placeMatrix
         // increment KilledCrow count
     }
 
-    public boolean isAdjacent(int pointNo1, int pointNo2){ // if egde present between points
+    public boolean isAdjacent(int pointNo1, int pointNo2) { // if egde present between points
         // if path exists and if empty point return true else false
-        return starMapMatrix[pointNo1-1][pointNo2-1] && placeMatrix[pointNo2-1].equals(State.NONE);
+        return starMapMatrix[pointNo1 - 1][pointNo2 - 1] && placeMatrix[pointNo2 - 1].equals(State.NONE);
     }
 
-    public PointView getKilledCrowPoint(int toPointNo){ // returns pointview of the crow which is to be killed
+    public PointView getKilledCrowPoint(int toPointNo) { // returns pointview of the crow which is to be killed
         int vultureNo = getVulturePoint().pointNumber;
-        for(int i = 0; i<10; i++){ // search based on common connecting node, returns it if found
-            if(starMapMatrix[vultureNo-1][i] && starMapMatrix[toPointNo-1][i])
+        for (int i = 0; i < 10; i++) { // search based on common connecting node, returns it if found
+            if (starMapMatrix[vultureNo - 1][i] && starMapMatrix[toPointNo - 1][i])
                 return pointViews[i];
         }
         return null;
     }
 
+    private void vultureMoveTurnSetup(){
+        PointView p = getVulturePoint();
+        animateOnClickPoint(p); // direct next turn to vulture
+        lastClicked = p;
+    }
+
+    private void crowMoveTurnSetup() {
+        PointView p = getCrowPoint();
+        animateOnClickPoint(p);
+        lastClicked = p;
+    }
+
     public void updateGameState(PointView point) {
-        if(vulturesTurn && vulturePlaced){ // if vulture move
+        if (vulturesTurn && vulturePlaced) { // if vulture move
             PointView vulturePoint = getVulturePoint(); // gets vulture point location
-            if(isAdjacent(vulturePoint.pointNumber, point.pointNumber)){
+            if (isAdjacent(vulturePoint.pointNumber, point.pointNumber)) {
                 movePoint(vulturePoint, point);
                 resetAnimateOnClickPoint();
                 setNextTurn();
                 lastClicked = point;
-            }
-            else if(isFlightKill(point.pointNumber)){
+            } else if (isFlightKill(point.pointNumber)) {
                 PointView killedCrowPoint = getKilledCrowPoint(point.pointNumber);
                 movePoint(vulturePoint, point);
                 killCrow(killedCrowPoint);
@@ -327,48 +338,41 @@ public class GamePage extends AppCompatActivity {
                 setNextTurn();
                 lastClicked = point;
             }
-            if(crowsTurn && crowsPlaced){ // for crows next move turn
-                PointView p = getCrowPoint();
-                animateOnClickPoint(p);
-                lastClicked = p;
+            if (crowsTurn && crowsPlaced) { // for crows next move turn
+                crowMoveTurnSetup();
             }
-            return;
-        }
-        else if(crowsTurn && crowsPlaced){
-            if(placeMatrix[point.pointNumber-1].equals(State.CROW)) {
+        } else if (crowsTurn && crowsPlaced) {
+            if (placeMatrix[point.pointNumber - 1].equals(State.CROW)) {
                 resetAnimateOnClickPoint();
                 animateOnClickPoint(point);
                 lastClicked = point;
-            }else if(isAdjacent(lastClicked.pointNumber, point.pointNumber)){
+            } else if (isAdjacent(lastClicked.pointNumber, point.pointNumber)) {
                 movePoint(lastClicked, point);
                 resetAnimateOnClickPoint();
                 setNextTurn();
                 lastClicked = point;
             }
-            if(vulturesTurn && vulturePlaced){ // keeps the next turn of vulture ready, if its placed
-                PointView p = getVulturePoint();
-                animateOnClickPoint(p); // direct next turn to vulture
-                lastClicked = p;
+            if (vulturesTurn && vulturePlaced) { // keeps the next turn of vulture ready, if its placed
+                vultureMoveTurnSetup();
             }
-            return;
-        }
+        } else {
+            if (point.equals(lastClicked)) // place phase
+                return;
 
-        if (point.equals(lastClicked)) // place phase
-            return;
+            resetAnimateOnClickPoint();
+            lastClicked = point;
 
-        resetAnimateOnClickPoint();
-        lastClicked = point;
+            if (placeMatrix[point.pointNumber - 1] != State.NONE)
+                return;
 
-        if(placeMatrix[point.pointNumber-1] != State.NONE)
-            return;
+            animateOnClickPoint(point);
+            setTurn(point);
+            setNextTurn();
 
-        animateOnClickPoint(point);
-        setTurn(point);
-        setNextTurn();
-        if(vulturesTurn && vulturePlaced){ // keeps the next turn of vulture ready, if its placed
-            PointView p = getVulturePoint();
-            animateOnClickPoint(p); // direct next turn to vulture
-            lastClicked = p;
+            if (vulturesTurn && vulturePlaced) { // keeps the next turn of vulture ready, if its placed
+                vultureMoveTurnSetup();
+            }
+
         }
     }
 }
