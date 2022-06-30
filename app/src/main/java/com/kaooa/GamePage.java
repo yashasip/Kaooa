@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.os.Bundle;
+import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -13,7 +13,6 @@ import com.kaooa.enums.State;
 import com.kaooa.objects.EdgeView;
 import com.kaooa.objects.PointView;
 
-import java.lang.ref.WeakReference;
 
 public class GamePage extends AppCompatActivity {
     EdgeView[] edgeViews;
@@ -100,7 +99,7 @@ public class GamePage extends AppCompatActivity {
     }
 
     public void openPauseMenu() {
-        setEdge(); // testing & debugging
+        // pending
     }
 
     private void initializePointSet() {
@@ -118,35 +117,42 @@ public class GamePage extends AppCompatActivity {
 
     private void initializeEdgeSet() {
         edgeViews = new EdgeView[15];
-        int edgeAddCount = 0;
+        int edgeIndex = 0;
         int edgeResId;
         String edgeId;
+        ViewTreeObserver edgeObserver;
 
         for (int i = 0; i < 10; i++) {
             for (int j = i; j < 10; j++) {
                 if (starMapMatrix[i][j]) { // if edge exists store <edgeId, edgeWidget(EdgeView)>
                     // the current index value
+                    int finalEdgeIndex = edgeIndex; // declaring effectively final variable for lambda expression
                     edgeId = "edge_" + (i + 1) + "_" + (j + 1);
                     edgeResId = getResources().getIdentifier(edgeId, "id", getPackageName()); // fetch id
-                    edgeViews[edgeAddCount] = findViewById(edgeResId);
+                    edgeViews[edgeIndex] = findViewById(edgeResId);
 
-                    edgeViews[edgeAddCount].initialize(edgeId, pointViews[i], pointViews[j]);
-                    edgeAddCount++;
+                    edgeObserver = edgeViews[i].getViewTreeObserver();
+                    edgeObserver.addOnGlobalLayoutListener(() -> initializeEdgeViewSetup(finalEdgeIndex)); // setGlobalLayoutListener for initial setup
+
+                    edgeViews[edgeIndex].initialize(edgeId, pointViews[i], pointViews[j]);
+                    edgeIndex++; // increment for next edge
                 }
             }
         }
     }
 
-    void setEdge() {
+    void initializeEdgeViewSetup(int edgeIndex) { // sets angle, length of the EdgeView
+        if(edgeViews[edgeIndex].initialized) // if already initialized return
+            return;
+
         int[] loc1 = new int[2];
         int[] loc2 = new int[2];
-        for (int i = 0; i < 15; i++) {
-            // get coordinates (must be calculated on the go)
-            edgeViews[i].endPoints[0].getLocationOnScreen(loc1);
-            edgeViews[i].endPoints[1].getLocationOnScreen(loc2);
 
-            edgeViews[i].setupEdge(loc1, loc2);
-        }
+        // get coordinates (must be calculated on the go)
+        edgeViews[edgeIndex].endPoints[0].getLocationOnScreen(loc1);
+        edgeViews[edgeIndex].endPoints[1].getLocationOnScreen(loc2);
+
+        edgeViews[edgeIndex].setupEdge(loc1, loc2);
     }
 
     void resetAnimateOnClickPoint() {
