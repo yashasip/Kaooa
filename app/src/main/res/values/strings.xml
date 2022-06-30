@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Kaooa</string>
     <string name="game_settings">settings</string>
-    <string name="start_game">Tap to Play</string>
+    <string name="start_game">TAP TO PLAY</string>
+    <string name="game_config_page_title">GAME MODE</string>
+    <string name="vs_string">vs</string>
+    <string name="play_button_description">Start Game</string>
+    <string name="crows_turn_header">Crow\'s Turn</string>
+    <string name="vultures_turn_header">Vulture\'s Turn</string>
+    <string name="vulture_place_guideline">Place the Vulture</string>
+    <string name="crow_place_guideline">Place the Crow</string>
+    <string name="vulture_move_guideline">Move the Vulture</string>
+    <string name="crow_move_guideline">Move the Crow</string>
 </resources>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:padding="@dimen/app_padding"
+    tools:context=".GameConfigPage">
+
+    <ImageButton
+        android:id="@+id/gameSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/game_settings"
+        android:src="@drawable/ic_game_settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/game_mode_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lilitaone_regular"
+        android:shadowColor="@color/theme_black"
+        android:shadowRadius="2.0"
+        android:text="@string/game_config_page_title"
+        android:textColor="@color/theme_black"
+        android:textSize="@dimen/game_config_page_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35" />
+
+    <TextView
+        android:id="@+id/vs_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vs_top_margin"
+        android:fontFamily="@font/lilitaone_regular"
+        android:text="@string/vs_string"
+        android:textColor="@color/theme_black"
+        android:textSize="@dimen/vs_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_mode_title" />
+
+
+    <ImageButton
+        android:id="@+id/play_as_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:rotationY="180"
+        app:layout_constraintEnd_toStartOf="@id/vs_text"
+        app:layout_constraintHorizontal_bias="0.775"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_mode_title" />
+
+    <ImageButton
+        android:id="@+id/play_as_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toEndOf="@id/vs_text"
+        app:layout_constraintTop_toBottomOf="@+id/game_mode_title" />
+
+    <ImageButton
+        android:id="@+id/player_type_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vs_top_margin"
+        android:layout_marginEnd="20dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_player"
+        app:layout_constraintEnd_toStartOf="@+id/vs_text"
+        app:layout_constraintTop_toBottomOf="@+id/play_as_1" />
+
+    <ImageButton
+        android:id="@+id/player_type_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="@dimen/vs_top_margin"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_player"
+        app:layout_constraintStart_toEndOf="@+id/vs_text"
+        app:layout_constraintTop_toBottomOf="@+id/play_as_2" />
+
+    <ImageButton
+        android:id="@+id/start_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/play_button_description"
+        android:src="@drawable/ic_play_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vs_text"
+        app:layout_constraintVertical_bias="0.923" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

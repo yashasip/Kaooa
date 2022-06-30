@@ -8,17 +8,46 @@
     android:padding="@dimen/app_padding"
     tools:context=".GamePage">
 
-    <ImageView
-        android:id="@+id/gameSettings"
+    <ImageButton
+        android:id="@+id/gamePause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:contentDescription="@string/game_settings"
-        android:onClick="openSettings"
-        android:src="@drawable/ic_game_settings"
+        android:src="@drawable/ic_game_pause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
+    <TextView
+        android:id="@+id/turn_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lilitaone_regular"
+        android:shadowColor="@color/theme_black"
+        android:shadowRadius="2.0"
+        android:textColor="@color/theme_black"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gamePause"
+        app:layout_constraintVertical_bias="0.095" />
+
+    <TextView
+        android:id="@+id/turn_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/lilitaone_regular"
+        android:shadowColor="@color/theme_black"
+        android:shadowRadius="2.0"
+        android:textColor="@color/theme_black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/turn_header" />
+
+    <com.kaooa.objects.EdgeView
         android:id="@+id/edge_1_2"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
@@ -28,11 +57,12 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_2"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/point_1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.494" />
+        app:layout_constraintVertical_bias="0.483" />
 
-    <ProgressBar
+    <com.kaooa.objects.EdgeView
         android:id="@+id/edge_1_10"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
@@ -42,9 +72,10 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_10"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/point_1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.506" />
+        app:layout_constraintVertical_bias="0.518" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_1"
@@ -61,7 +92,7 @@
         app:point_color="@color/theme_white"
         app:point_drawable="@drawable/ic_white_circle_space" />
 
-    <ProgressBar
+    <com.kaooa.objects.EdgeView
         android:id="@+id/edge_2_3"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
@@ -71,11 +102,12 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_3"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/point_2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.458" />
+        app:layout_constraintVertical_bias="0.439" />
 
-    <ProgressBar
+    <com.kaooa.objects.EdgeView
         android:id="@+id/edge_2_4"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
@@ -85,11 +117,12 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_4"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/point_2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467" />
+        app:layout_constraintVertical_bias="0.459" />
 
-    <ProgressBar
+    <com.kaooa.objects.EdgeView
         android:id="@+id/edge_2_10"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
@@ -104,7 +137,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/point_2"
         app:layout_constraintTop_toTopOf="@id/point_2"
-        app:layout_constraintVertical_bias="0.844" />
+        app:layout_constraintVertical_bias="0.488" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_2"
@@ -123,7 +156,7 @@
         app:point_color="@color/theme_white"
         app:point_drawable="@drawable/ic_white_circle_space" />
 
-    <ProgressBar
+    <com.kaooa.objects.EdgeView
         android:id="@+id/edge_3_4"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
@@ -133,9 +166,10 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_4"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/point_3"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409" />
+        app:layout_constraintVertical_bias="0.425" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_3"
@@ -154,7 +188,7 @@
         app:point_color="@color/theme_white"
         app:point_drawable="@drawable/ic_white_circle_space" />
 
-    <ProgressBar
+    <com.kaooa.objects.EdgeView
         android:id="@+id/edge_4_5"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
@@ -164,11 +198,12 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/point_4"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.447" />
+        app:layout_constraintVertical_bias="0.444" />
 
-    <ProgressBar
+    <com.kaooa.objects.EdgeView
         android:id="@+id/edge_4_6"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
@@ -178,9 +213,10 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_6"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/point_4"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.457" />
+        app:layout_constraintVertical_bias="0.479" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_4"
@@ -199,7 +235,7 @@
         app:point_color="@color/theme_white"
         app:point_drawable="@drawable/ic_white_circle_space" />
 
-    <ProgressBar
+    <com.kaooa.objects.EdgeView
         android:id="@+id/edge_5_6"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
@@ -212,7 +248,7 @@
         app:layout_constraintEnd_toStartOf="@+id/point_6"
         app:layout_constraintStart_toEndOf="@+id/point_5"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.479" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_5"
@@ -232,7 +268,7 @@
         app:point_color="@color/theme_white"
         app:point_drawable="@drawable/ic_white_circle_space" />
 
-    <ProgressBar
+    <com.kaooa.objects.EdgeView
         android:id="@+id/edge_6_7"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
@@ -242,11 +278,12 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_7"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/point_6"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518" />
+        app:layout_constraintVertical_bias="0.532" />
 
-    <ProgressBar
+    <com.kaooa.objects.EdgeView
         android:id="@+id/edge_6_8"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
@@ -257,9 +294,10 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/point_8"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toEndOf="@+id/point_6"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.546" />
+        app:layout_constraintVertical_bias="0.532" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_6"
@@ -278,7 +316,7 @@
         app:point_color="@color/theme_white"
         app:point_drawable="@drawable/ic_white_circle_space" />
 
-    <ProgressBar
+    <com.kaooa.objects.EdgeView
         android:id="@+id/edge_7_8"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
@@ -291,7 +329,7 @@
         app:layout_constraintEnd_toStartOf="@+id/point_8"
         app:layout_constraintStart_toEndOf="@+id/point_7"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.561" />
+        app:layout_constraintVertical_bias="0.555" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_7"
@@ -311,7 +349,7 @@
         app:point_color="@color/theme_white"
         app:point_drawable="@drawable/ic_white_circle_space" />
 
-    <ProgressBar
+    <com.kaooa.objects.EdgeView
         android:id="@+id/edge_8_9"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
@@ -322,11 +360,12 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/point_9"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="@+id/point_8"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.596" />
+        app:layout_constraintVertical_bias="0.572" />
 
-    <ProgressBar
+    <com.kaooa.objects.EdgeView
         android:id="@+id/edge_8_10"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
@@ -337,9 +376,10 @@
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/point_10"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/point_8"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.532" />
+        app:layout_constraintVertical_bias="0.54" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_8"
@@ -358,7 +398,7 @@
         app:point_color="@color/theme_white"
         app:point_drawable="@drawable/ic_white_circle_space" />
 
-    <ProgressBar
+    <com.kaooa.objects.EdgeView
         android:id="@+id/edge_9_10"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
@@ -371,7 +411,7 @@
         app:layout_constraintEnd_toEndOf="@+id/point_10"
         app:layout_constraintStart_toStartOf="@+id/point_9"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.536" />
+        app:layout_constraintVertical_bias="0.561" />
 
     <com.kaooa.objects.PointView
         android:id="@+id/point_9"

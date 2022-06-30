@@ -2,7 +2,12 @@
 <resources>
     <dimen name="app_padding">10dp</dimen>
     <dimen name="map_side_margin">14dp</dimen>
+    <dimen name="game_title">55sp</dimen>
+    <dimen name="game_config_page_title">37sp</dimen>
+    <dimen name="vs_text">30sp</dimen>
     <dimen name="point_scale">2.2</dimen>
     <dimen name="token_stroke_width">5dp</dimen>
     <dimen name="point_space_size">39dp</dimen>
+    <dimen name="vs_top_margin">35dp</dimen>
+    <dimen name="home_page_secondary_font">17sp</dimen>
 </resources>
