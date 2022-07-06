@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.kaooa.dialogs.WinDialog;
 import com.kaooa.enums.State;
 import com.kaooa.objects.EdgeView;
 import com.kaooa.objects.PointView;
@@ -428,10 +428,9 @@ public class GamePage extends AppCompatActivity {
         if(isGameOver()){ // check after each turn for game over
             gameOver = true;
             resetAnimateOnClickPoint();
-            if(winningBird.equals(State.VULTURE)) // win message
-                Toast.makeText(this, "Vulture Winner", Toast.LENGTH_SHORT).show();
-            else if(winningBird.equals(State.CROW))
-                Toast.makeText(this, "Crow Winner", Toast.LENGTH_SHORT).show();
+            // create winner result pop up
+            WinDialog winnerDialog = new WinDialog(this, winningBird);
+            winnerDialog.show(getSupportFragmentManager(), "winnerDialog");
         }
 
     }
