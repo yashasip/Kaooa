@@ -11,4 +11,6 @@
     <string name="crow_place_guideline">Place the Crow</string>
     <string name="vulture_move_guideline">Move the Vulture</string>
     <string name="crow_move_guideline">Move the Crow</string>
+    <string name="crow_wins">Crow Wins</string>
+    <string name="vulture_wins">Vulture Wins</string>
 </resources>
