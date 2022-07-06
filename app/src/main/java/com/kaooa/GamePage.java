@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kaooa.enums.State;
 import com.kaooa.objects.EdgeView;
@@ -21,6 +22,9 @@ public class GamePage extends AppCompatActivity {
     ImageButton pauseBtn;
 
     // game parameters
+    // game termination
+    boolean gameOver = false;
+    State winningBird = State.NONE;
     // turn
     boolean crowsTurn = true; // crow starts game
     boolean vulturesTurn = false;
@@ -46,6 +50,9 @@ public class GamePage extends AppCompatActivity {
     int crowColor;
     int vultureColor;
     int noColor;
+
+    // game result parameters
+    int crowKillCount=0; // crow kill counter
 
     State[] placeMatrix = {State.NONE, State.NONE, State.NONE, State.NONE, State.NONE, State.NONE, State.NONE, State.NONE, State.NONE, State.NONE};
 
@@ -299,12 +306,34 @@ public class GamePage extends AppCompatActivity {
     public void killCrow(PointView point) {
         point.changeColor(noColor); // remove bird
         placeMatrix[point.pointNumber - 1] = State.NONE; // remove bird from placeMatrix
-        // increment KilledCrow count
+        crowKillCount++; // increment KilledCrow count
     }
 
-    public boolean isAdjacent(int pointNo1, int pointNo2) { // if egde present between points
+    private boolean isAdjacent(int pointNo1, int pointNo2){ // check if path exists between two points
+        return starMapMatrix[pointNo1 - 1][pointNo2 - 1];
+    }
+
+    public boolean isAdjacentNone(int pointNo1, int pointNo2) { // if egde present between points
         // if path exists and if empty point return true else false
-        return starMapMatrix[pointNo1 - 1][pointNo2 - 1] && placeMatrix[pointNo2 - 1].equals(State.NONE);
+        return isAdjacent(pointNo1, pointNo2) && placeMatrix[pointNo2 - 1].equals(State.NONE);
+    }
+
+    private boolean canVultureMove(){ // check if vulture can move
+        int vulturePointNo = getVulturePoint().pointNumber;
+        for(int i=0; i<10; i++){
+            if(isAdjacentNone(vulturePointNo, i+1))
+                return true;
+            else if(isAdjacent(vulturePointNo, i+1) && placeMatrix[i].equals(State.CROW)){
+                for(int j=0; j<10; j++){
+                    if(!isAdjacent(i+1,j+1))
+                        continue;
+                    if(isFlightKill(j+1)){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public PointView getKilledCrowPoint(int toPointNo) { // returns pointview of the crow which is to be killed
@@ -328,10 +357,27 @@ public class GamePage extends AppCompatActivity {
         lastClicked = p;
     }
 
+    private boolean isGameOver(){
+        if(!vulturePlaced) // vulture should be placed
+            return false;
+
+        if(crowKillCount == 3) {
+            winningBird = State.VULTURE; // declare winner
+            return true;
+        } else if(!canVultureMove()){
+            winningBird = State.CROW;
+            return true;
+        }
+        return false;
+    }
+
     public void updateGameState(PointView point) {
+        if(gameOver)
+            return;
+
         if (vulturesTurn && vulturePlaced) { // if vulture move
             PointView vulturePoint = getVulturePoint(); // gets vulture point location
-            if (isAdjacent(vulturePoint.pointNumber, point.pointNumber)) {
+            if (isAdjacentNone(vulturePoint.pointNumber, point.pointNumber)) {
                 movePoint(vulturePoint, point);
                 resetAnimateOnClickPoint();
                 setNextTurn();
@@ -352,7 +398,7 @@ public class GamePage extends AppCompatActivity {
                 resetAnimateOnClickPoint();
                 animateOnClickPoint(point);
                 lastClicked = point;
-            } else if (isAdjacent(lastClicked.pointNumber, point.pointNumber)) {
+            } else if (isAdjacentNone(lastClicked.pointNumber, point.pointNumber)) {
                 movePoint(lastClicked, point);
                 resetAnimateOnClickPoint();
                 setNextTurn();
@@ -378,7 +424,15 @@ public class GamePage extends AppCompatActivity {
             if (vulturesTurn && vulturePlaced) { // keeps the next turn of vulture ready, if its placed
                 vultureMoveTurnSetup();
             }
-
         }
+        if(isGameOver()){ // check after each turn for game over
+            gameOver = true;
+            resetAnimateOnClickPoint();
+            if(winningBird.equals(State.VULTURE)) // win message
+                Toast.makeText(this, "Vulture Winner", Toast.LENGTH_SHORT).show();
+            else if(winningBird.equals(State.CROW))
+                Toast.makeText(this, "Crow Winner", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
