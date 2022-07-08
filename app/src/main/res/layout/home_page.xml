@@ -8,15 +8,18 @@
     android:padding="@dimen/app_padding"
     tools:context=".HomePage">
 
-    <ImageView
-        android:id="@+id/gameSettings"
+    <ImageButton
+        android:id="@+id/game_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/game_settings"
-        android:src="@drawable/ic_game_settings"
+        android:src="@drawable/ic_gear"
+        android:background="@android:color/transparent"
+        android:scaleX="0.9"
+        android:scaleY="0.9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:onClick="openSettings"/>
+        />
 
     <ImageView
         android:id="@+id/flybird1"

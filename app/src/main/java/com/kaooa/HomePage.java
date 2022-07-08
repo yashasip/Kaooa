@@ -21,6 +21,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.PathInterpolator;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +30,9 @@ public class HomePage extends AppCompatActivity {
 
     TextView gameStartText;
     TextView gameTitle;
+    ImageButton gameSettings;
     ImageView bird1, bird2;
+
     float displayMaxX, displayMaxY;
     AnimatorSet scaleTitleSet, swoopBirdsSet;
     ObjectAnimator blinker;
@@ -42,6 +45,7 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.home_page);
 
         gameStartText = findViewById(R.id.gameStart);
+        gameSettings = findViewById(R.id.game_settings);
         gameTitle = findViewById(R.id.gameTitle);
         bird1 = findViewById(R.id.flybird1);
         bird2 = findViewById(R.id.flybird2);
@@ -49,10 +53,12 @@ public class HomePage extends AppCompatActivity {
         initializeDisplayDimensions();
         startAnimations();
 
+        gameSettings.setOnClickListener(view->openSettingsMenu());
         gameStartText.setOnClickListener(view -> startGame());
     }
 
-    public void openSettings(View view) {
+    public void openSettingsMenu() {
+        rotateGear();
         Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
     }
 
@@ -67,6 +73,12 @@ public class HomePage extends AppCompatActivity {
         display.getSize(mdispSize);
         displayMaxX = mdispSize.x;
         displayMaxY = mdispSize.y;
+    }
+
+    private void rotateGear(){
+        ObjectAnimator rotate = ObjectAnimator.ofFloat(gameSettings, "rotation", 0f, 360f);
+        rotate.setDuration(1000);
+        rotate.start();
     }
 
     private void gameTitleAnimation() {
