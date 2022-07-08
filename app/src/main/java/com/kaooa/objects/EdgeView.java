@@ -34,7 +34,7 @@ public class EdgeView extends ProgressBar {
         this.initialized = true; // edge initialized
     }
 
-    public boolean hasEndpoint(PointView point) {
+    public boolean notEndpoint(PointView point) {
         return !endPoints[0].equals(point) && !endPoints[1].equals(point);
     }
 }

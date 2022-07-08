@@ -242,7 +242,7 @@ public class GamePage extends AppCompatActivity {
         point.increasePointScale();
 
         for (EdgeView edgeView : edgeViews) {
-            if (edgeView.hasEndpoint(point))
+            if (edgeView.notEndpoint(point))
                 continue;
 
             edgeView.setIndeterminate(true); // set edge flow
