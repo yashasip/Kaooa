@@ -173,7 +173,7 @@ public class GamePage extends AppCompatActivity {
             return;
 
         for (EdgeView edgeView : edgeViews) {
-            if (edgeView.hasEndpoint(lastClicked))
+            if (edgeView.notEndpoint(lastClicked))
                 continue;
 
             edgeView.setIndeterminate(false); // reset edge flow
