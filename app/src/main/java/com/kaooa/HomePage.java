@@ -108,10 +108,11 @@ public class HomePage extends AppCompatActivity {
         bird2.setImageResource(R.drawable.avd_bird);
 
         AnimatedVectorDrawable flyBird1 = (AnimatedVectorDrawable) bird1.getDrawable();
+        flyBird1.setTint(getResources().getColor(R.color.theme_black));
         flyBird1.start();
         AnimatedVectorDrawable flyBird2 = (AnimatedVectorDrawable) bird2.getDrawable();
-        flyBird2.start();
         flyBird2.setTint(getResources().getColor(R.color.theme_red));
+        flyBird2.start();
     }
 
     private void birdsSwoopAnimation() {
