@@ -99,6 +99,7 @@ public class HomePage extends AppCompatActivity {
         blinker = ObjectAnimator.ofFloat(gameStartText, "alpha", 1f);
 
         blinker.setDuration(1400);
+        blinker.setStartDelay(1600);
         blinker.setRepeatCount(ObjectAnimator.INFINITE);
         blinker.setRepeatMode(ObjectAnimator.REVERSE);
     }
@@ -146,11 +147,10 @@ public class HomePage extends AppCompatActivity {
 
         rotateBirdsSet = new AnimatorSet();
         rotateBirdsSet.playTogether(rotateBird1, rotateBird2);
-        rotateBirdsSet.setDuration(1000);
-        rotateBirdsSet.setStartDelay(2000);
+        rotateBirdsSet.setDuration(800);
+        rotateBirdsSet.setStartDelay(1040);
 
-        flyBirdsSet.setStartDelay(700);
-        flyBirdsSet.setDuration(7000);
+        flyBirdsSet.setDuration(5600);
 
         swoopBirdsSet.playTogether(flyBirdsSet, rotateBirdsSet);
     }
@@ -165,7 +165,7 @@ public class HomePage extends AppCompatActivity {
         startAnimatorSet = new AnimatorSet();
         setupAnimations();
         startAnimatorSet.play(scaleTitleSet).with(swoopBirdsSet);
-        startAnimatorSet.play(swoopBirdsSet).before(blinker);
+        startAnimatorSet.play(swoopBirdsSet).with(blinker);
         startAnimatorSet.start();
     }
 
