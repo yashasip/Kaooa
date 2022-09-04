@@ -1,5 +1,5 @@
 # Kaooa
-**An Abstract Strategy Board Game.**
+**An Abstract Strategy Board Game. Built in Android Studio in Java.**
 
 ## About this game
 **Kaooa is a traditional Indian Board Game also known as "Vulture and Crows". It is an Abstract Strategy Hunt game.**
